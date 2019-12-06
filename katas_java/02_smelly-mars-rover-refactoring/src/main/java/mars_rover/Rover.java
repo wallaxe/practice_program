@@ -11,7 +11,7 @@ public class Rover {
 
     public Rover(int x, int y, String direction) {
         this.direction = Direction.create(direction);
-        setCoordinate(x, y);
+        this.coordinates = new Coordinates(x, y);
     }
 
 
@@ -85,18 +85,14 @@ public class Rover {
 
     private void move(int displacement) {
         if (faceNorth()) {
-            setCoordinate(getX(), getY() + displacement);
+            this.coordinates = new Coordinates(coordinates.x(), coordinates.y() + displacement);
         } else if (faceSouth()) {
-            setCoordinate(getX(), getY() - displacement);
+            this.coordinates = new Coordinates(coordinates.x(), coordinates.y() - displacement);
         } else if (faceWest()) {
-            setCoordinate(getX() - displacement, getY());
+            this.coordinates = new Coordinates(coordinates.x() - displacement, coordinates.y());
         } else  {
-            setCoordinate(getX() + displacement, getY());
+            this.coordinates = new Coordinates(coordinates.x() + displacement, coordinates.y());
         }
-    }
-
-    private void setCoordinate(int x, int y) {
-        this.coordinates = new Coordinates(x, y);
     }
 
     @Override
@@ -121,11 +117,4 @@ public class Rover {
                 '}';
     }
 
-    private int getY() {
-        return coordinates.y();
-    }
-
-    private int getX() {
-        return coordinates.x();
-    }
 }
