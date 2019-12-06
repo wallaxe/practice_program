@@ -87,11 +87,11 @@ public class Rover {
         if (faceNorth()) {
             this.coordinates = coordinates.moveAlongY(displacement);
         } else if (faceSouth()) {
-            this.coordinates = new Coordinates(coordinates.x(), coordinates.y() - displacement);
+            this.coordinates = coordinates.moveAlongY(-displacement);
         } else if (faceWest()) {
-            this.coordinates = new Coordinates(coordinates.x() - displacement, coordinates.y());
+            this.coordinates = coordinates.MoveAlongX(-displacement);
         } else  {
-            this.coordinates = new Coordinates(coordinates.x() + displacement, coordinates.y());
+            this.coordinates = coordinates.MoveAlongX(displacement);
         }
     }
 
