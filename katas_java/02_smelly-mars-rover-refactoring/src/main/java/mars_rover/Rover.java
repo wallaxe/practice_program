@@ -13,9 +13,9 @@ public class Rover {
 
     public Rover(int x, int y, String direction) {
         this.direction = Direction.create(direction);
-        this.y = y;
-        this.x = x;
+        setCoordinate(x, y);
     }
+
 
     public void receive(String commandsSequence) {
         for (int i = 0; i < commandsSequence.length(); ++i) {
@@ -87,14 +87,19 @@ public class Rover {
 
     private void move(int displacement) {
         if (faceNorth()) {
-            y += displacement;
+            setCoordinate(x, getY() + displacement);
         } else if (faceSouth()) {
-            y -= displacement;
+            setCoordinate(x, getY() - displacement);
         } else if (faceWest()) {
-            x -= displacement;
+            setCoordinate(getX() - displacement, y);
         } else  {
-            x += displacement;
+            setCoordinate(getX() + displacement, y);
         }
+    }
+
+    private void setCoordinate(int x, int y) {
+        this.y = y;
+        this.x = x;
     }
 
     @Override
@@ -102,23 +107,30 @@ public class Rover {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rover rover = (Rover) o;
-        return y == rover.y &&
-                x == rover.x &&
+        return getY() == rover.getY() &&
+                getX() == rover.getX() &&
                 direction == rover.direction;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(direction, y, x);
+        return Objects.hash(direction, getY(), getX());
     }
 
     @Override
     public String toString() {
         return "Rover{" +
                 "directionType=" + direction +
-                ", y=" + y +
-                ", x=" + x +
+                ", y=" + getY() +
+                ", x=" + getX() +
                 '}';
     }
 
+    private int getY() {
+        return y;
+    }
+
+    private int getX() {
+        return x;
+    }
 }
