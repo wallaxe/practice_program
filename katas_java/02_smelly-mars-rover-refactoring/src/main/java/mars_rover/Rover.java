@@ -8,8 +8,6 @@ public class Rover {
 
     private Direction direction;
     private Coordinates coordinates;
-    private int y;
-    private int x;
 
     public Rover(int x, int y, String direction) {
         this.direction = Direction.create(direction);
@@ -98,8 +96,6 @@ public class Rover {
     }
 
     private void setCoordinate(int x, int y) {
-        this.y = y;
-        this.x = x;
         this.coordinates = new Coordinates(x, y);
     }
 
@@ -126,10 +122,10 @@ public class Rover {
     }
 
     private int getY() {
-        return y;
+        return coordinates.y();
     }
 
     private int getX() {
-        return x;
+        return coordinates.x();
     }
 }
