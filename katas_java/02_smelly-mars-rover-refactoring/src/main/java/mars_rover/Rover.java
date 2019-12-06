@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Rover {
 
-    private Direction directionType;
+    private Direction direction;
     private int y;
     private int x;
 
@@ -49,15 +49,15 @@ public class Rover {
     }
 
     private boolean faceWest() {
-        return directionType.equals(Direction.W);
+        return direction.equals(Direction.W);
     }
 
     private boolean faceSouth() {
-        return directionType.equals(Direction.S);
+        return direction.equals(Direction.S);
     }
 
     private boolean faceNorth() {
-        return directionType.equals(Direction.N);
+        return direction.equals(Direction.N);
     }
 
     private void rotateLeft() {
@@ -101,24 +101,24 @@ public class Rover {
         Rover rover = (Rover) o;
         return y == rover.y &&
                 x == rover.x &&
-                directionType == rover.directionType;
+                direction == rover.direction;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(directionType, y, x);
+        return Objects.hash(direction, y, x);
     }
 
     @Override
     public String toString() {
         return "Rover{" +
-                "directionType=" + directionType +
+                "directionType=" + direction +
                 ", y=" + y +
                 ", x=" + x +
                 '}';
     }
 
     private void setDirection(String direction) {
-        this.directionType = Direction.create(direction);
+        this.direction = Direction.create(direction);
     }
 }
