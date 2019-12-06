@@ -108,22 +108,20 @@ public class Rover {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rover rover = (Rover) o;
-        return getY() == rover.getY() &&
-                getX() == rover.getX() &&
-                direction == rover.direction;
+        return direction == rover.direction &&
+                Objects.equals(coordinates, rover.coordinates);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(direction, getY(), getX());
+        return Objects.hash(direction, coordinates);
     }
 
     @Override
     public String toString() {
         return "Rover{" +
-                "directionType=" + direction +
-                ", y=" + getY() +
-                ", x=" + getX() +
+                "direction=" + direction +
+                ", coordinates=" + coordinates +
                 '}';
     }
 
