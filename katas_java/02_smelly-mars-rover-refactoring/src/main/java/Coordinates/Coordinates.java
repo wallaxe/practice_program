@@ -1,7 +1,5 @@
 package Coordinates;
 
-import mars_rover.Rover;
-
 import java.util.Objects;
 
 public class Coordinates {
@@ -35,19 +33,11 @@ public class Coordinates {
                 '}';
     }
 
-    public int y() {
-        return y;
-    }
-
-    public int x() {
-        return x;
-    }
-
     public Coordinates moveAlongY(int displacement) {
-        return new Coordinates(x(), y() + displacement);
+        return new Coordinates(x, y + displacement);
     }
 
     public Coordinates MoveAlongX(int displacement) {
-        return new Coordinates(x() + displacement, y());
+        return new Coordinates(x + displacement, y);
     }
 }
