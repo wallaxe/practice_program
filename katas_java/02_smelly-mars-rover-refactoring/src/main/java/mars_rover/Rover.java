@@ -87,13 +87,13 @@ public class Rover {
 
     private void move(int displacement) {
         if (faceNorth()) {
-            setCoordinate(x, getY() + displacement);
+            setCoordinate(getX(), getY() + displacement);
         } else if (faceSouth()) {
-            setCoordinate(x, getY() - displacement);
+            setCoordinate(getX(), getY() - displacement);
         } else if (faceWest()) {
-            setCoordinate(getX() - displacement, y);
+            setCoordinate(getX() - displacement, getY());
         } else  {
-            setCoordinate(getX() + displacement, y);
+            setCoordinate(getX() + displacement, getY());
         }
     }
 
