@@ -1,10 +1,13 @@
 package mars_rover;
 
+import Coordinates.Coordinates;
+
 import java.util.Objects;
 
 public class Rover {
 
     private Direction direction;
+    private Coordinates coordinates;
     private int y;
     private int x;
 
