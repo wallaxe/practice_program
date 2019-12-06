@@ -38,23 +38,35 @@ public class Rover {
     }
 
     private void rotateRight() {
-        if (getDirection().equals("N")) {
+        if (faceNorth()) {
             setDirection("E");
-        } else if (getDirection().equals("S")) {
+        } else if (faceSouth()) {
             setDirection("W");
-        } else if (getDirection().equals("W")) {
+        } else if (faceWest()) {
             setDirection("N");
         } else  {
             setDirection("S");
         }
     }
 
+    private boolean faceWest() {
+        return getDirection().equals("W");
+    }
+
+    private boolean faceSouth() {
+        return getDirection().equals("S");
+    }
+
+    private boolean faceNorth() {
+        return getDirection().equals("N");
+    }
+
     private void rotateLeft() {
-        if (getDirection().equals("N")) {
+        if (faceNorth()) {
             setDirection("W");
-        } else if (getDirection().equals("S")) {
+        } else if (faceSouth()) {
             setDirection("E");
-        } else if (getDirection().equals("W")) {
+        } else if (faceWest()) {
             setDirection("S");
         } else  {
             setDirection("N");
@@ -72,11 +84,11 @@ public class Rover {
     }
 
     private void move(int displacement) {
-        if (getDirection().equals("N")) {
+        if (faceNorth()) {
             y += displacement;
-        } else if (getDirection().equals("S")) {
+        } else if (faceSouth()) {
             y -= displacement;
-        } else if (getDirection().equals("W")) {
+        } else if (faceWest()) {
             x -= displacement;
         } else  {
             x += displacement;
