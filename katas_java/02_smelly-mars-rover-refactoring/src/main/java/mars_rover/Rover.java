@@ -100,6 +100,7 @@ public class Rover {
     private void setCoordinate(int x, int y) {
         this.y = y;
         this.x = x;
+        this.coordinates = new Coordinates(x, y);
     }
 
     @Override
