@@ -1,5 +1,7 @@
 package mars_rover;
 
+import java.util.Objects;
+
 public class Rover {
 
     private Direction directionType;
@@ -85,30 +87,24 @@ public class Rover {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Rover rover = (Rover) o;
-
-        if (y != rover.y) return false;
-        if (x != rover.x) return false;
-        return getDirection() != null ? getDirection().equals(rover.getDirection()) : rover.getDirection() == null;
-
+        return y == rover.y &&
+                x == rover.x &&
+                directionType == rover.directionType;
     }
 
     @Override
     public int hashCode() {
-        int result = getDirection() != null ? getDirection().hashCode() : 0;
-        result = 31 * result + y;
-        result = 31 * result + x;
-        return result;
+        return Objects.hash(directionType, y, x);
     }
 
     @Override
     public String toString() {
         return "Rover{" +
-            "direction='" + getDirection() + '\'' +
-            ", y=" + y +
-            ", x=" + x +
-            '}';
+                "directionType=" + directionType +
+                ", y=" + y +
+                ", x=" + x +
+                '}';
     }
 
     private String getDirection() {
