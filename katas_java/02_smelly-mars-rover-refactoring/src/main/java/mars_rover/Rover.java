@@ -19,22 +19,25 @@ public class Rover {
     public void receive(String commandsSequence) {
         for (int i = 0; i < commandsSequence.length(); ++i) {
             String command = commandsSequence.substring(i, i + 1);
+            execute(command);
+        }
+    }
 
-            if (command.equals("l")) {
-                direction = direction.rotateLeft();
-            }
+    private void execute(String command) {
+        if (command.equals("l")) {
+            direction = direction.rotateLeft();
+        }
 
-            if (command.equals("r")) {
-                direction = direction.rotateRight();
-            }
+        if (command.equals("r")) {
+            direction = direction.rotateRight();
+        }
 
-            if (command.equals("f")) {
-                coordinates = direction.move(coordinates, DISPLACEMENT);
-            }
+        if (command.equals("f")) {
+            coordinates = direction.move(coordinates, DISPLACEMENT);
+        }
 
-            if (command.equals("b")) {
-                coordinates = direction.move(coordinates, -DISPLACEMENT);
-            }
+        if (command.equals("b")) {
+            coordinates = direction.move(coordinates, -DISPLACEMENT);
         }
     }
 
