@@ -38,15 +38,7 @@ public class Rover {
     }
 
     private void rotateRight() {
-        if (faceNorth()) {
-            direction = Direction.E;
-        } else if (faceSouth()) {
-            direction = Direction.W;
-        } else if (faceWest()) {
-            direction = Direction.N;
-        } else  {
-            direction = Direction.S;
-        }
+        direction = direction.rotateRight();
     }
 
     private boolean faceWest() {
