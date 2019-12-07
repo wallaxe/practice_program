@@ -1,5 +1,7 @@
 package mars_rover;
 
+import Coordinates.Coordinates;
+
 public enum Direction {
     N {
         @Override
@@ -11,6 +13,11 @@ public enum Direction {
         public Direction rotateLeft() {
             return Direction.W;
         }
+
+        @Override
+        public Coordinates move(Coordinates coordinates, int displacement) {
+            return coordinates.moveAlongY(displacement);
+        }
     },S {
         @Override
         public Direction rotateRight() {
@@ -20,6 +27,11 @@ public enum Direction {
         @Override
         public Direction rotateLeft() {
             return Direction.E;
+        }
+
+        @Override
+        public Coordinates move(Coordinates coordinates, int displacement) {
+            return coordinates.moveAlongY(-displacement);
         }
     },E {
         @Override
@@ -31,6 +43,11 @@ public enum Direction {
         public Direction rotateLeft() {
             return Direction.N;
         }
+
+        @Override
+        public Coordinates move(Coordinates coordinates, int displacement) {
+            return coordinates.MoveAlongX(displacement);
+        }
     },W {
         @Override
         public Direction rotateRight() {
@@ -40,6 +57,11 @@ public enum Direction {
         @Override
         public Direction rotateLeft() {
             return Direction.S;
+        }
+
+        @Override
+        public Coordinates move(Coordinates coordinates, int displacement) {
+            return coordinates = coordinates.MoveAlongX(-displacement);
         }
     };
 
@@ -63,4 +85,6 @@ public enum Direction {
     abstract public Direction rotateRight();
 
     public abstract Direction rotateLeft();
+
+    public abstract Coordinates move(Coordinates coordinates, int displacement);
 }

@@ -68,15 +68,7 @@ public class Rover {
     }
 
     private void move(int displacement) {
-        if (faceNorth()) {
-            coordinates = coordinates.moveAlongY(displacement);
-        } else if (faceSouth()) {
-            coordinates = coordinates.moveAlongY(-displacement);
-        } else if (faceWest()) {
-            coordinates = coordinates.MoveAlongX(-displacement);
-        } else  {
-            coordinates = coordinates.MoveAlongX(displacement);
-        }
+        coordinates = direction.move(coordinates, displacement);
     }
 
     @Override
