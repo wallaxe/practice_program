@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Rover {
 
+    private static final int DISPLACEMENT = 1;
     private Direction direction;
     private Coordinates coordinates;
 
@@ -28,11 +29,11 @@ public class Rover {
             }
 
             if (command.equals("f")) {
-                coordinates = direction.move(coordinates, 1);
+                coordinates = direction.move(coordinates, DISPLACEMENT);
             }
 
             if (command.equals("b")) {
-                coordinates = direction.move(coordinates, -1);
+                coordinates = direction.move(coordinates, -DISPLACEMENT);
             }
         }
     }
