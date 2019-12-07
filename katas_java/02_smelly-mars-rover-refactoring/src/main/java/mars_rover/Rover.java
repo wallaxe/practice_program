@@ -41,18 +41,6 @@ public class Rover {
         direction = direction.rotateRight();
     }
 
-    private boolean faceWest() {
-        return direction.equals(Direction.W);
-    }
-
-    private boolean faceSouth() {
-        return direction.equals(Direction.S);
-    }
-
-    private boolean faceNorth() {
-        return direction.equals(Direction.N);
-    }
-
     private void rotateLeft() {
         direction = direction.rotateLeft();
     }
