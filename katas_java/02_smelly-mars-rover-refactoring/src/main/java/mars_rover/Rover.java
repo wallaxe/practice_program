@@ -20,43 +20,21 @@ public class Rover {
             String command = commandsSequence.substring(i, i + 1);
 
             if (command.equals("l")) {
-                rotateLeft();
+                direction = direction.rotateLeft();
             }
 
             if (command.equals("r")) {
-                rotateRight();
+                direction = direction.rotateRight();
             }
 
             if (command.equals("f")) {
-                moveForwards();
+                coordinates = direction.move(coordinates, 1);
             }
 
             if (command.equals("b")) {
-                moveBackwards();
+                coordinates = direction.move(coordinates, -1);
             }
         }
-    }
-
-    private void rotateRight() {
-        direction = direction.rotateRight();
-    }
-
-    private void rotateLeft() {
-        direction = direction.rotateLeft();
-    }
-
-    private void moveBackwards() {
-        int displacement = -1;
-        move(displacement);
-    }
-
-    private void moveForwards() {
-        int displacement = 1;
-        move(displacement);
-    }
-
-    private void move(int displacement) {
-        coordinates = direction.move(coordinates, displacement);
     }
 
     @Override
