@@ -1,9 +1,10 @@
 package birthdaygreetings;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -16,23 +17,36 @@ import javax.mail.internet.MimeMessage;
 public class BirthdayService {
 
     public void sendGreetings(String fileName, OurDate ourDate,
-            String smtpHost, int smtpPort) throws IOException, ParseException,
+                              String smtpHost, int smtpPort) throws EmployeeReaderException,
             AddressException, MessagingException {
-        BufferedReader in = new BufferedReader(new FileReader(fileName));
-        String str = "";
-        str = in.readLine(); // skip header
-        while ((str = in.readLine()) != null) {
-            String[] employeeData = str.split(", ");
-            Employee employee = new Employee(employeeData[1], employeeData[0],
-                    employeeData[2], employeeData[3]);
-            if (employee.isBirthday(ourDate)) {
+
+        FileEmployeeReader employeeReader = new FileEmployeeReader(fileName);
+
+        List<Employee> employees = employeeReader.obtainEmployees();
+
+        List<Employee> employeesWithBirthday = filterEmployeesWithBirthday(ourDate, employees);
+
+        sendBirthDayMessage(smtpHost, smtpPort, employeesWithBirthday);
+
+    }
+
+    private List<Employee> filterEmployeesWithBirthday(OurDate ourDate, List<Employee> employees) {
+        return employees.stream()
+                .filter((employee -> employee.isBirthday(ourDate)))
+                .collect(Collectors.toList());
+    }
+
+    private void sendBirthDayMessage(String smtpHost, int smtpPort, List<Employee> employeesWithBirthday) throws MessagingException {
+        for (Employee employee: employeesWithBirthday) {
+
                 String recipient = employee.getEmail();
                 String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
                         employee.getFirstName());
                 String subject = "Happy Birthday!";
+
+
                 sendMessage(smtpHost, smtpPort, "sender@here.com", subject,
                         body, recipient);
-            }
         }
     }
 
